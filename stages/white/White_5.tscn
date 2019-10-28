@@ -1,0 +1,110 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://scripts/stages/Stage_Template.gd" type="Script" id=1]
+[ext_resource path="res://objects/tilesets/White_Tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://objects/tilesets/Collision_Tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://objects/characters/enemies/mobs/stone/Stone_Mad_Cube.tscn" type="PackedScene" id=4]
+[ext_resource path="res://objects/characters/i.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/utility/Teleporter.gd" type="Script" id=6]
+[ext_resource path="res://objects/utility/Ship.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 157 )
+
+[node name="White_5" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+transform/scale = Vector2( 4, 4 )
+mode = 0
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 1
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65538, 5, 65539, 1, 65540, 1, 65541, 1, 65542, 1, 65543, 1, 65544, 1, 65545, 1, 65546, 1, 65547, 1, 65548, 1, 65549, 6, 131074, 0, 131075, 16, 131076, 16, 131077, 16, 131078, 16, 131079, 16, 131080, 16, 131081, 16, 131082, 16, 131083, 16, 131084, 16, 131085, 2, 196610, 0, 196611, 16, 196612, 16, 196613, 16, 196614, 16, 196615, 16, 196616, 16, 196617, 16, 196618, 16, 196619, 16, 196620, 16, 196621, 2, 327674, 14, 327675, 14, 327676, 14, 327677, 14, 327678, 14, 327679, 14, 262144, 14, 262145, 14, 262146, 16, 262147, 16, 262148, 16, 262149, 16, 262150, 16, 262151, 16, 262152, 16, 262153, 16, 262154, 16, 262155, 16, 262156, 16, 262157, 2, 393210, 9, 393211, 9, 393212, 9, 393213, 9, 393214, 9, 393215, 9, 327680, 9, 327681, 9, 327682, 0, 327683, 16, 327684, 16, 327685, 16, 327686, 16, 327687, 16, 327688, 16, 327689, 16, 327690, 16, 327691, 16, 327692, 16, 327693, 2, 393218, 0, 393219, 16, 393220, 16, 393221, 16, 393222, 16, 393223, 16, 393224, 16, 393225, 16, 393226, 16, 393227, 16, 393228, 16, 393229, 2, 458754, 8, 458755, 3, 458756, 3, 458757, 3, 458758, 3, 458759, 3, 458760, 3, 458761, 3, 458762, 3, 458763, 3, 458764, 3, 458765, 7, 524290, 9, 524291, 9, 524292, 9, 524293, 9, 524294, 9, 524295, 9, 524296, 9, 524297, 9, 524298, 9, 524299, 9, 524300, 9, 524301, 9, 1638489, 0 )
+
+[node name="Collision" type="TileMap" parent="."]
+
+transform/scale = Vector2( 4, 4 )
+mode = 0
+tile_set = ExtResource( 3 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 7
+collision/mask = 7
+occluder/light_mask = 1
+tile_data = IntArray( 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 65537, 0, 65550, 0, 131073, 0, 131086, 0, 262142, 0, 262143, 0, 196608, 0, 196609, 0, 196622, 0, 327678, 0, 262158, 0, 393214, 0, 393215, 0, 327680, 0, 327681, 0, 327694, 0, 393217, 0, 393230, 0, 458753, 0, 458766, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 0, 524295, 0, 524296, 0, 524297, 0, 524298, 0, 524299, 0, 524300, 0, 524301, 0, 524302, 0 )
+
+[node name="Stone_Mad_Cube" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 798.802, 140.437 )
+
+[node name="Stone_Mad_Cube1" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 807.525, 426.043 )
+
+[node name="Stone_Mad_Cube2" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 240.022, 440.181 )
+
+[node name="Stone_Mad_Cube3" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 240.022, 142.889 )
+
+[node name="i" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 520.127, 131.606 )
+
+[node name="Teleporter 2" type="Area2D" parent="."]
+
+transform/pos = Vector2( -3.34036, 290.612 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 6 )
+tp_path = "res://stages/white/White_2.tscn"
+tp_side = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleporter 2"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Spawn_4" type="Position2D" parent="."]
+
+transform/pos = Vector2( 98.4107, 286.75 )
+
+[node name="Ship" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 810.307, 185.388 )
+tp_path = "res://stages/stone/Stone_1.tscn"
+
+[connection signal="body_enter" from="Teleporter 2" to="Teleporter 2" method="body_enter"]
+
+

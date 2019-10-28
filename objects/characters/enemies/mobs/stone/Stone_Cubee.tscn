@@ -1,0 +1,97 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://scripts/enemies/mobs/stone/Stone_Cubee.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/characters/enemies/stone/cubee/000.png" type="Texture" id=2]
+[ext_resource path="res://assets/graphics/characters/enemies/stone/cubee/001.png" type="Texture" id=3]
+[ext_resource path="res://objects/UI/Enemy_HP_UI.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 14, 14 )
+
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 12, 10 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Stone_Cubee" type="RigidBody2D"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 14, 2 )
+shapes/0/trigger = true
+shapes/1/shape = SubResource( 3 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, -12, 0 )
+shapes/1/trigger = true
+collision/layers = 2
+collision/mask = 2
+mode = 2
+mass = 1.0
+friction = 0.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 999
+contact_monitor = true
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+script/script = ExtResource( 1 )
+max_hp = 0.0
+speed = 0.0
+damage = 0.0
+
+[node name="Rotate" type="Node2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Rotate"]
+
+transform/scale = Vector2( 4, 4 )
+frames = SubResource( 2 )
+animation = "default"
+frame = 1
+playing = true
+
+[node name="Enemy_HP_UI" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 0, -20 )
+
+[node name="CC_Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 14, 2 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="CollisionShape2D1" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( -12, 0 )
+shape = SubResource( 3 )
+trigger = true
+_update_shape_index = 1
+
+[connection signal="body_enter" from="." to="." method="hit"]
+
+[connection signal="timeout" from="CC_Timer" to="." method="cc_timeout"]
+
+

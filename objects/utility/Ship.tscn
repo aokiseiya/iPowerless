@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=1]
+
+[ext_resource path="res://scripts/utility/Ship.gd" type="Script" id=1]
+[ext_resource path="res://assets/graphics/utility/ship.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 50.1609
+height = 49.9271
+
+[node name="Ship" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 56 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+tp_path = ""
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0, 56 )
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="body_enter" from="." to="." method="body_enter"]
+
+

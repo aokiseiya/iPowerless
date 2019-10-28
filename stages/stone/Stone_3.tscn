@@ -1,0 +1,141 @@
+[gd_scene load_steps=12 format=1]
+
+[ext_resource path="res://scripts/stages/Stage_Template.gd" type="Script" id=1]
+[ext_resource path="res://objects/tilesets/Stone_Tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://objects/tilesets/Collision_Tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://scripts/utility/Sprint_Module.gd" type="Script" id=4]
+[ext_resource path="res://assets/graphics/weapons/iCore-1.png" type="Texture" id=5]
+[ext_resource path="res://objects/characters/i.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scripts/utility/Teleporter.gd" type="Script" id=7]
+[ext_resource path="res://objects/characters/enemies/mobs/stone/Stone_Cubee.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/utility/Battery.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 22, 22 )
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 157.539, 10 )
+
+[node name="Stone_3" type="Node2D"]
+
+script/script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+transform/scale = Vector2( 4, 4 )
+mode = 0
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 1
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 65538, 0, 65539, 0, 65540, 0, 65541, 0, 65542, 0, 65543, 0, 65544, 0, 65545, 0, 65546, 0, 65547, 0, 65548, 0, 65549, 0, 131074, 0, 131075, 0, 131076, 0, 131077, 0, 131078, 0, 131079, 0, 131080, 0, 131081, 0, 131082, 0, 131083, 0, 131084, 0, 131085, 0, 196610, 0, 196611, 0, 196612, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 0, 196617, 0, 196618, 0, 196619, 0, 196620, 0, 196621, 0, 262146, 0, 262147, 0, 262148, 0, 262149, 0, 262150, 0, 262151, 0, 262152, 0, 262153, 0, 262154, 0, 262155, 0, 262156, 0, 262157, 0, 327682, 0, 327683, 0, 327684, 0, 327685, 0, 327686, 0, 327687, 0, 327688, 0, 327689, 0, 327690, 0, 327691, 0, 327692, 0, 327693, 0, 393218, 0, 393219, 0, 393220, 0, 393221, 0, 393222, 0, 393223, 0, 393224, 0, 393225, 0, 393226, 0, 393227, 0, 393228, 0, 393229, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 0, 458758, 0, 458759, 0, 458760, 0, 458761, 0, 458762, 0, 458763, 0, 458764, 0, 458765, 0, 524290, 1, 524291, 1, 524292, 1, 524293, 1, 524294, 1, 524295, 0, 524296, 0, 524297, 1, 524298, 1, 524299, 1, 524300, 1, 524301, 1, 589831, 0, 589832, 0, 655367, 1, 655368, 1, 1638489, 0 )
+
+[node name="Collision" type="TileMap" parent="."]
+
+transform/scale = Vector2( 4, 4 )
+mode = 0
+tile_set = ExtResource( 3 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 7
+collision/mask = 7
+occluder/light_mask = 1
+tile_data = IntArray( 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6, 0, 7, 0, 8, 0, 9, 0, 10, 0, 11, 0, 12, 0, 13, 0, 14, 0, 65537, 0, 65550, 0, 131073, 0, 131086, 0, 196609, 0, 196622, 0, 262145, 0, 262158, 0, 327681, 0, 327694, 0, 393217, 0, 393230, 0, 458753, 0, 458766, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 0, 524297, 0, 524298, 0, 524299, 0, 524300, 0, 524301, 0, 524302, 0, 589830, 0, 589833, 0, 655366, 0, 655367, 0, 655368, 0, 655369, 0 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+transform/pos = Vector2( 512.638, 168.145 )
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 4 )
+weapon_name = ""
+
+[node name="Sprite" type="Sprite" parent="Area2D"]
+
+transform/scale = Vector2( 4, 4 )
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="i" parent="." instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 512.52, 252.748 )
+
+[node name="Teleporter" type="Area2D" parent="."]
+
+transform/pos = Vector2( 511.076, 601.596 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -0.000488281, 0.000366211 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 7 )
+tp_path = "res://stages/stone/Stone_2.tscn"
+tp_side = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Teleporter"]
+
+transform/pos = Vector2( -0.000488281, 0.000366211 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Spawn_3" type="Position2D" parent="."]
+
+transform/pos = Vector2( 512.616, 540.618 )
+
+[node name="Stone_Cubee" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 77.921, 22.5561 )
+
+[node name="Stone_Cubee1" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 924.799, 34.8594 )
+
+[node name="Stone_Cubee2" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 518.79, 26.6572 )
+
+[node name="Battery" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 801.766, 157.892 )
+energy_amount = 250
+
+[connection signal="body_enter" from="Area2D" to="Area2D" method="body_enter"]
+
+[connection signal="body_enter" from="Teleporter" to="Teleporter" method="body_enter"]
+
+
